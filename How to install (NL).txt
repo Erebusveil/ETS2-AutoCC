@@ -1,0 +1,102 @@
+# ETS2 / ATS AutoCC
+
+Automatische cruise control die zich aanpast aan de geldende snelheidslimiet — zoals Tesla's snelheidslimietherkennig. Gebouwd voor Euro Truck Simulator 2 en American Truck Simulator.
+
+---
+
+## Wat doet het?
+
+Zodra je cruise control inschakelt, past AutoCC de ingestelde snelheid automatisch aan op de snelheidslimiet van de weg die je rijdt. Wordt de limiet lager? Dan past het script direct bij. Wordt de limiet hoger? Dan wacht het even om te bevestigen dat de nieuwe limiet stabiel is.
+
+Een modern dashboard toont live je snelheid, de geldende limiet en de status van je cruise control.
+
+---
+
+## Vereisten
+
+- Euro Truck Simulator 2 of American Truck Simulator (Steam)
+- Python 3.10 of hoger — download via python.org
+- De meegeleverde scs-telemetry.dll
+
+---
+
+## Installatie
+
+### Stap 1 — SDK Plugin installeren
+
+Open de meegeleverde map release_v_1_12_1 en navigeer naar Win64 → plugins.
+
+Kopieer de plugins map naar je spelmap:
+
+**ETS2:**
+```
+C:\Program Files (x86)\Steam\steamapps\common\Euro Truck Simulator 2\bin\win_x64\
+```
+
+**ATS:**
+```
+C:\Program Files (x86)\Steam\steamapps\common\American Truck Simulator\bin\win_x64\
+```
+
+Heb je al een plugins map? Kopieer dan alleen de inhoud erin, niet de map zelf.
+
+### Stap 2 — Python packages installeren
+
+Open PowerShell en voer uit:
+
+```
+py -m pip install PyQt6 pynput truck-telemetry
+```
+
+### Stap 3 — Spel starten
+
+Start ETS2 of ATS via Steam. Bij het opstarten verschijnt een melding over advanced SDK features — klik op OK. Dit is normaal en vereist voor de tool.
+
+### Stap 4 — AutoCC starten
+
+Voer uit in PowerShell:
+
+```
+py ETS2_AutoCC.py
+```
+
+Het dashboard opent. Rij en schakel cruise control in — de rest gaat automatisch.
+
+---
+
+## Dashboard
+
+- Blauwe boog — huidige snelheid
+- Groene boog — snelheidslimiet
+- Paarse boog — ingestelde CC snelheid
+- Rode kleur — je rijdt harder dan de limiet
+- STOP / START knop — zet AutoCC tijdelijk uit zonder het venster te sluiten
+
+---
+
+## Standaard cruise control toetsen
+
+| Actie | Toets |
+|---|---|
+| CC inschakelen | B (controller, ingedrukt houden) |
+| CC hervatten | A (controller, ingedrukt houden) |
+| Snelheid omhoog | Numpad + |
+| Snelheid omlaag | Numpad - |
+
+---
+
+## Bekende beperkingen
+
+- Werkt alleen bij cruise control snelheden die een veelvoud van 5 km/h zijn
+- Op wegen zonder gedetecteerde limiet doet AutoCC niets
+- SmartScreen kan een waarschuwing geven bij de .exe versie — klik op Meer informatie en dan Toch uitvoeren
+
+---
+
+## Gemaakt met
+
+- Python
+- PyQt6
+- pynput
+- truck-telemetry
+- scs-sdk-plugin door RenCloud
